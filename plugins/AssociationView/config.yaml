@@ -7,7 +7,6 @@ author_name: Tomohiro Okuwaki
 l10n_class: AssociationView::L10N
 description: <__trans phrase="Add Website name to the association screen.">
 callbacks:
-    MT::App::CMS::template_source.create_association: $AssociationView::AssociationView::CMS::insert_website
     MT::App::CMS::template_param.create_association: $AssociationView::AssociationView::CMS::template_param
 list_properties:
     association:
