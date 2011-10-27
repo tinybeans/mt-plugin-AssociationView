@@ -1,0 +1,26 @@
+name: AssociationView
+id: AssociationView
+key:  associationview
+version: 0.1
+author_link: http://www.tinybeans.net/blog/
+author_name: Tomohiro Okuwaki
+l10n_class: AssociationView::L10N
+description: <__trans phrase="Add Website name to the association screen.">
+callbacks:
+    MT::App::CMS::template_source.create_association: $AssociationView::AssociationView::CMS::insert_website
+    MT::App::CMS::template_param.create_association: $AssociationView::AssociationView::CMS::template_param
+list_properties:
+    association:
+        blog_id:
+            auto: 1
+            label: Website
+            order: 350
+            html: >
+                sub {
+                    my ($prop, $obj, $app) = @_;
+                    my $blog_id = $obj->blog_id;
+                    my $blog = MT::Blog->load($blog_id);
+                    my $parent_id = $blog->parent_id;
+                    my $website = MT::Website->load($parent_id);
+                    return $website->name;
+                }
